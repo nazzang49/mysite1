@@ -16,7 +16,6 @@ public class UpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
 		String no = request.getParameter("no");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");

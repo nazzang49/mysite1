@@ -13,9 +13,6 @@ public class LoginformAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
 		WebUtil.forward(request, response, "/WEB-INF/views/user/loginform.jsp");
-		
 	}
-
 }

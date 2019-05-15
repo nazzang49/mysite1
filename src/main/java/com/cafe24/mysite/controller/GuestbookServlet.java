@@ -22,7 +22,6 @@ public class GuestbookServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//분기할 주소를 하나의 파라미터로 전송
 		String actionName = request.getParameter("a");
-		System.out.println("actionName : "+actionName);
 		Action action = new GuestbookActionFactory().getAction(actionName);
 		action.execute(request, response);
 	}

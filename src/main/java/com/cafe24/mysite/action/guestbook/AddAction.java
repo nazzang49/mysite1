@@ -27,8 +27,6 @@ public class AddAction implements Action{
 		vo.setContents(contents);
 		
 		new GuestBookDAO().insert(vo);
-		WebUtil.redirect(request, response, request.getContextPath()+"/guestbook");
-		
+		WebUtil.redirect(request, response, request.getContextPath()+"/guestbook");	
 	}
-	
 }

@@ -28,7 +28,5 @@ public class UpdateAction implements Action {
 		if(flag) {
 			WebUtil.redirect(request, response, request.getContextPath()+"/guestbook");
 		}
-		
 	}
-
 }

@@ -176,6 +176,4 @@ public class GuestBookDAO {
 		if(flag==1) return true;
 		return false;
 	}
-	
-	
 }

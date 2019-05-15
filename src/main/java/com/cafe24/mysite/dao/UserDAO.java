@@ -135,7 +135,7 @@ public class UserDAO {
 	
 	//로그인하는 사용자의 세션값 저장을 위한 정보 추출
 	public UserVO get(String email, String pw){
-		UserVO vo = new UserVO();
+		UserVO vo = null;
 		try {
 			conn = getConnection();
 
@@ -147,6 +147,7 @@ public class UserDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
+				vo = new UserVO();
 				vo.setNo(rs.getLong(1));
 				vo.setName(rs.getString(2));
 			}
@@ -156,7 +157,7 @@ public class UserDAO {
 		} finally {
 			close();
 		}
+		System.out.println(vo);
 		return vo;
 	}
-	
 }

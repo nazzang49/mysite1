@@ -8,10 +8,13 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 
+//web.xml 등록 대신 애노테이션을 활용한 필터 등록
+//@WebFilter(value="/*", initParams=@WebInitParam(name="encoding",value="utf-8"))
 public class EncodingFilter implements Filter {
 
-	private String encoding;
+	private String encoding = null;
 	
 	//web.xml에서 init 설정 필요
 	public void init(FilterConfig fConfig) throws ServletException {

@@ -22,8 +22,6 @@ public class GuestbookActionFactory extends ActionFactory{
 		}else {
 			action = new ListAction();
 		}
-		
 		return action;
 	}
-	
 }

@@ -15,5 +15,4 @@ public class JoinformAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		WebUtil.forward(request, response, "/WEB-INF/views/user/joinform.jsp");
 	}
-
 }

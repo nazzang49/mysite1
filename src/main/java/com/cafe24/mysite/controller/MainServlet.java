@@ -15,6 +15,12 @@ import com.cafe24.web.mvc.Action;
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	public void init() throws ServletException {
+		String configPath = getServletConfig().getInitParameter("config");
+		System.out.println("init() called : "+configPath);
+	}
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String actionName = request.getParameter("a");
 		Action action = new MainActionFactory().getAction(actionName);
