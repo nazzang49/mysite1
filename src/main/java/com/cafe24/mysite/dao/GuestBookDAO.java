@@ -49,7 +49,7 @@ public class GuestBookDAO {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:mariadb://192.168.1.45:3307/webdb";
+		String url = "jdbc:mariadb://192.168.1.33:3307/webdb";
 		String user = "webdb";
 		String pw = "webdb";
 		try {
