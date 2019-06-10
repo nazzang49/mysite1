@@ -45,16 +45,16 @@ public class UserDAO {
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		String url = "jdbc:mariadb://192.168.1.33:3307/webdb";
-		String user = "webdb";
-		String pw = "webdb";
-		try {
-			conn = DriverManager.getConnection(url, user, pw);
-		} catch (SQLException e) {
+			//1. JDBC Driver(PostgreSQL) 로딩 after add User Library
+			Class.forName("org.postgresql.Driver");
+			
+			//2. 연결하기
+			String url = "jdbc:postgresql://192.168.1.43:5432/webdb";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			
+			System.out.println("연결 성공");
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return conn;
@@ -65,8 +65,10 @@ public class UserDAO {
 		int flag = 0;
 		try {
 			conn = getConnection();
+			
+			System.out.println(conn);
 
-			sql = "insert into user values(null,?,?,?,?,now())";
+			sql = "insert into member values(default,?,?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,vo.getName());
 			pstmt.setString(2,vo.getEmail());
@@ -90,7 +92,7 @@ public class UserDAO {
 		try {
 			conn = getConnection();
 
-			sql = "update user set name=?, email=?, pw=?, regdate=now() where no=?";
+			sql = "update member set name=?, email=?, pw=?, regdate=now() where no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,vo.getName());
 			pstmt.setString(2,vo.getEmail());
@@ -114,7 +116,7 @@ public class UserDAO {
 			conn = getConnection();
 
 			//SQL
-			sql = "select name, email, pw from user where no=?";
+			sql = "select name, email, pw from member where no=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, no);
 			rs = pstmt.executeQuery();
@@ -140,7 +142,7 @@ public class UserDAO {
 			conn = getConnection();
 
 			//SQL
-			sql = "select * from user where email=? and pw=?";
+			sql = "select * from member where email=? and pw=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
 			pstmt.setString(2, pw);

@@ -26,6 +26,8 @@ public class JoinAction implements Action {
 		vo.setPw(pw);
 		vo.setGender(gender);
 		
+		System.out.println(vo.getName());
+		
 		UserDAO dao = new UserDAO();
 		boolean flag = dao.insert(vo);
 		

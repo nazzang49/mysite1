@@ -18,6 +18,7 @@ public class UserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//분기할 주소를 하나의 파라미터로 전송
 		String actionName = request.getParameter("a");
+		System.out.println(actionName);
 		Action action = new UserActionFactory().getAction(actionName);
 		action.execute(request, response);
 	}

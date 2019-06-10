@@ -45,16 +45,16 @@ public class GuestBookDAO {
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		String url = "jdbc:mariadb://192.168.1.33:3307/webdb";
-		String user = "webdb";
-		String pw = "webdb";
-		try {
-			conn = DriverManager.getConnection(url, user, pw);
-		} catch (SQLException e) {
+			//1. JDBC Driver(PostgreSQL) 로딩 after add User Library
+			Class.forName("org.postgresql.Driver");
+			
+			//2. 연결하기
+			String url = "jdbc:postgresql://192.168.1.43:5432/webdb";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+			
+			System.out.println("연결 성공");
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return conn;
@@ -118,7 +118,7 @@ public class GuestBookDAO {
 		try {
 			conn = getConnection();
 
-			sql = "insert into guestbook values(7,?,?,?,now())";
+			sql = "insert into guestbook values(default,?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,vo.getName());
 			pstmt.setString(2,vo.getPassword());
@@ -140,7 +140,7 @@ public class GuestBookDAO {
 		try {
 			conn = getConnection();
 
-			sql = "delete guestbook where no=? and password=?";
+			sql = "delete from guestbook where no=? and password=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1,vo.getNo());
 			pstmt.setString(2,vo.getPassword());

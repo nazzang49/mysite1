@@ -10,6 +10,7 @@ public class UserVO {
 	private String pw;
 	private String gender;
 	private Date regdate;
+	
 	public Long getNo() {
 		return no;
 	}
